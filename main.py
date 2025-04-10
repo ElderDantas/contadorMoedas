@@ -27,15 +27,12 @@ def DetectarMoeda(img):
     classe = classes[index]
     return classe,percent
 
-# contador = 0
-
 while True:
     _,img = video.read()
     img = cv2.resize(img,(640,480))
     imgPre = preProcess(img)
     countors,hi = cv2.findContours(imgPre,cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_NONE)
 
-    # recortes_para_salvar = []
     qtd = 0
     for cnt in countors:
         area = cv2.contourArea(cnt)
@@ -55,12 +52,6 @@ while True:
 
     cv2.imshow('IMG',img)
     cv2.imshow('IMG PRE', imgPre)
-    
-    # if cv2.waitKey(1) & 0xFF == ord('0'):
-    #     nome_arquivo = f"foto_{contador}.jpg"
-    #     cv2.imwrite(nome_arquivo, recorte)
-    #     print(f"Foto salva como {nome_arquivo}")
-    #     contador += 1
     
     if cv2.waitKey(1) & 0xFF == 27: # Fecha o programa ao pressionar o ESC
         break
